@@ -26,4 +26,28 @@ class ContactSellerInfo extends Module
 
         $this->confirmUninstall = $this->l('Are you sure you want to uninstall?');
     }
+    public function install()
+    {
+        if (!parent::install() ||
+            !$this->registerHook('displayContactSellerInfo') ||
+            !Configuration::updateValue('SELLER_NIP', '') ||
+            !Configuration::updateValue('SELLER_REGON', '') ||
+            !Configuration::updateValue('SELLER_KRS', '')
+        ) {
+            return false;
+        }
+        return true;
+    }
+
+    public function uninstall()
+    {
+        if (!parent::uninstall() ||
+            !Configuration::deleteByName('SELLER_NIP') ||
+            !Configuration::deleteByName('SELLER_REGON') ||
+            !Configuration::deleteByName('SELLER_KRS')
+        ) {
+            return false;
+        }
+        return true;
+    }
 }

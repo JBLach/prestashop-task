@@ -26,9 +26,11 @@ class ContactSellerInfo extends Module
 
         $this->confirmUninstall = $this->l('Are you sure you want to uninstall?');
     }
+
     public function install()
     {
         if (!parent::install() ||
+            !$this->registerHook('actionFrontControllerSetMedia') ||
             !$this->registerHook('displayContactSellerInfo') ||
             !Configuration::updateValue('SELLER_NIP', '') ||
             !Configuration::updateValue('SELLER_REGON', '') ||
@@ -126,5 +128,28 @@ class ContactSellerInfo extends Module
         $helper->fields_value['SELLER_KRS'] = Configuration::get('SELLER_KRS');
 
         return $helper->generateForm($fieldsForm);
+    }
+
+    public function hookActionFrontControllerSetMedia()
+    {
+        $this->context->controller->registerStylesheet(
+            'module-contactsellerinfo-front',
+            'modules/' . $this->name . '/views/css/front.css',
+            [
+                'media' => 'all',
+                'priority' => 1000,
+            ]
+        );
+    }
+
+    public function hookDisplayContactSellerInfo($params)
+    {
+        $this->context->smarty->assign([
+            'seller_nip' => Configuration::get('SELLER_NIP'),
+            'seller_regon' => Configuration::get('SELLER_REGON'),
+            'seller_krs' => Configuration::get('SELLER_KRS'),
+        ]);
+
+        return $this->display(__FILE__, 'views/templates/hook/contact_info.tpl');
     }
 }

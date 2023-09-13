@@ -30,6 +30,7 @@
   {block name="left_column"}
     <div id="left-column" class="col-xs-12 col-sm-4 col-md-3">
       {hook h='displayContactLeftColumn'}
+      {hook h='displayContactSellerInfo'}
     </div>
   {/block}
 {else if $layout === 'layouts/layout-right-column.tpl'}

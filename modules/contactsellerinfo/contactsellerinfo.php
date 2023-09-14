@@ -142,7 +142,7 @@ class ContactSellerInfo extends Module
         );
 
         $this->context->controller->registerJavascript(
-            'mymodule-javascript',
+            'module-contactsellerinfo-front-js',
             'modules/' . $this->name . '/views/js/front.js',
             [
                 'position' => 'bottom',

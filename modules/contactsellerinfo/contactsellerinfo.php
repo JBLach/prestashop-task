@@ -140,6 +140,15 @@ class ContactSellerInfo extends Module
                 'priority' => 1000,
             ]
         );
+
+        $this->context->controller->registerJavascript(
+            'mymodule-javascript',
+            'modules/' . $this->name . '/views/js/front.js',
+            [
+                'position' => 'bottom',
+                'priority' => 1000,
+            ]
+        );
     }
 
     public function hookDisplayContactSellerInfo($params)

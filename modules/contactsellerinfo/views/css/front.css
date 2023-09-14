@@ -1,1 +1,38 @@
 /* front.css */
+
+.seller-info {
+  position: relative;
+}
+
+.seller-info__wrapper {
+  border: 1px solid rgba(0,0,0,.1);
+  padding: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 0.5rem;
+}
+
+.seller-info__wrapper--label {
+  font-weight: 600;
+}
+
+.seller-info__alert {
+  position: absolute;
+  bottom: -48px;
+  left: 0;
+  display: none;
+  margin: 0;
+  z-index: 100;
+  width: 100%;
+  border-radius: 0.5rem;
+}
+
+.copyButton {
+  cursor: pointer;
+}
+
+.copyButton:hover {
+  color: #24b9d7;
+}
